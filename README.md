@@ -41,5 +41,5 @@ Before you can run the project locally, ensure you have the following:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/tunisian-traffic-signal.git
-   cd tunisian-traffic-signal
+   git clone https://github.com/splinter1998/eblagh.git
+   cd eblagh

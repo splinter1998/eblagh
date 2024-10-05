@@ -1,45 +1,50 @@
-Let’s help Tunisia move faster, safer, and smarter
+# React + TypeScript + Vite
 
-# Tunisian Traffic Signal
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Tunisian Traffic Signal is an application that allows users to report and monitor real-time traffic updates across Tunisia. The app is designed to help citizens navigate through traffic by providing a crowdsourced platform for traffic alerts, road conditions, and accidents. 
+Currently, two official plugins are available:
 
-## Features
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- **Real-time traffic reports**: Users can signal traffic conditions such as congestions, accidents, or roadblocks.
-- **Map visualization**: Traffic signals are displayed on a map to help users visualize trouble spots.
-- **Crowdsourced updates**: Citizens can contribute by posting live updates and reviewing the status of their route.
-- **Traffic Alerts**: Push notifications to alert users of traffic jams or emergencies in their vicinity.
-- **User-Friendly Interface**: Simple, intuitive design for reporting traffic conditions.
+## Expanding the ESLint configuration
 
-## Tech Stack
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- **Frontend**: HTML, CSS, JavaScript (React.js)
-- **Backend**: Node.js with Express.js or 
-- **Database**: MySQL
-- **Map API**: Google Maps API or OpenStreetMap API
-- **Hosting**: Heroku, AWS, or DigitalOcean
+- Configure the top-level `parserOptions` property like this:
 
-## How It Works
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-1. **Signal Traffic**: Users submit traffic reports through the app by selecting a location on the map and choosing the type of traffic condition (e.g., accident, roadblock, congestion).
-2. **Post Online**: Reports are posted in real time on the online map, accessible to all users.
-3. **Monitor Traffic**: Citizens can monitor live traffic data, see alerts, and navigate alternative routes.
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-## Getting Started
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
 
-### Prerequisites
-
-Before you can run the project locally, ensure you have the following:
-
-- Node.js (for backend and frontend)
-- MySQL (for database)
-- Google Maps API Key (for map services)
-
-### Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/splinter1998/eblagh.git
-   cd eblagh
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```

@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx", // or "react" if using older React versions
+    "strict": true, // Enable strict type-checking options
+    "skipLibCheck": true, // Skip type checking of all declaration files
+    "esModuleInterop": true // Enable interoperability between CommonJS and ES Modules
+  }
+}
